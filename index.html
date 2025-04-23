@@ -114,15 +114,17 @@
     let currentStep = 1;
     let showWhiteScreen = false;
 
-    // Predefined vertical movement sequence for "No" button with farther range
+    // Predefined sequence of positions for the "No" button (horizontal and vertical)
     const positions = [
-      "55%", // start lower on the screen
-      "40%", // move up farther
-      "70%", // move down farther
-      "80%", // move further down
-      "45%", // move up a bit again
-      "75%"  // move further down
+      { top: "50%", left: "40%" }, // Top-left
+      { top: "30%", left: "60%" }, // Top-right
+      { top: "70%", left: "30%" }, // Bottom-left
+      { top: "80%", left: "50%" }, // Bottom-center
+      { top: "20%", left: "70%" }, // Top-right
+      { top: "60%", left: "80%" }, // Bottom-right
+      { top: "40%", left: "50%" }  // Center
     ];
+
     let posIndex = 0;
 
     function showChatBubble(message, targetBtn, bubble) {
@@ -146,9 +148,10 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Move button in sequence (farther)
+      // Move button in sequence (predefined positions with both X and Y movement)
       posIndex = (posIndex + 1) % positions.length;
-      noBtn.style.top = positions[posIndex];  // Update vertical movement
+      noBtn.style.top = positions[posIndex].top; // Move vertically
+      noBtn.style.left = positions[posIndex].left; // Move horizontally
     });
 
     yesBtn.addEventListener("click", () => {
