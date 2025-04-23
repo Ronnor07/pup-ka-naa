@@ -80,6 +80,10 @@
     #catContainer {
       display: none;
       margin-top: 4vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
 
     #catContainer img {
@@ -108,8 +112,11 @@
   </div>
 
   <div id="finalMessage"></div>
+
   <div id="catContainer">
     <img src="https://media.tenor.com/7WcPvBpkHusAAAAi/cat-cute.gif" alt="Cute cat">
+    <img src="https://media.tenor.com/BDqR1Kj9N88AAAAC/cat-dancing.gif" alt="Dancing cat">
+    <img src="https://media.tenor.com/tE5tx8zQeisAAAAC/cat-bow.gif" alt="Cat bowing">
   </div>
 
   <script>
@@ -155,9 +162,10 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Move button within safe mobile space
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight - 100;
+      // Prevent button from going off screen
+      const padding = 50;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
       const moveX = Math.floor(Math.random() * maxX);
       const moveY = Math.floor(Math.random() * maxY);
       noBtn.style.left = `${moveX}px`;
@@ -179,7 +187,7 @@
         noBtn.style.display = "none";
         chatBubbleAboveNo.style.display = "none";
         chatBubbleAboveYes.style.display = "none";
-        catContainer.style.display = "block";
+        catContainer.style.display = "flex";
       }
     });
   </script>
