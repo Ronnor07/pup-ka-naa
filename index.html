@@ -114,15 +114,18 @@
     let currentStep = 1;
     let showWhiteScreen = false;
 
-    // Predefined sequence of positions for the "No" button (horizontal and vertical)
+    // Predefined sequence of movements (X and Y directions)
     const positions = [
-      { top: "50%", left: "40%" }, // Top-left
-      { top: "30%", left: "60%" }, // Top-right
-      { top: "70%", left: "30%" }, // Bottom-left
-      { top: "80%", left: "50%" }, // Bottom-center
-      { top: "20%", left: "70%" }, // Top-right
-      { top: "60%", left: "80%" }, // Bottom-right
-      { top: "40%", left: "50%" }  // Center
+      { top: "30%", left: "30%" },  // Diagonal Top-left
+      { top: "20%", left: "70%" },  // Diagonal Top-right
+      { top: "50%", left: "50%" },  // Center
+      { top: "80%", left: "40%" },  // Diagonal Bottom-left
+      { top: "70%", left: "80%" },  // Diagonal Bottom-right
+      { top: "60%", left: "60%" },  // Center-right
+      { top: "50%", left: "80%" },  // Bottom-right
+      { top: "10%", left: "50%" },  // Top-center
+      { top: "80%", left: "10%" },  // Bottom-left
+      { top: "40%", left: "40%" },  // Left of center
     ];
 
     let posIndex = 0;
