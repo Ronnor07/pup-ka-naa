@@ -113,6 +113,15 @@
     let currentStep = 1;
     let showWhiteScreen = false;
 
+    // Fixed sequence for the "No" button movement
+    const positions = [
+      { x: "30%", y: "50%" },
+      { x: "70%", y: "50%" },
+      { x: "50%", y: "80%" },
+      { x: "40%", y: "70%" }
+    ];
+    let posIndex = 0;
+
     function showChatBubble(message, targetBtn, bubble) {
       bubble.textContent = message;
       bubble.style.display = "block";
@@ -134,16 +143,10 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Shorten the movement of the button
-      const maxX = window.innerWidth - noBtn.offsetWidth - 100; // Reduced the movement
-      const maxY = window.innerHeight - noBtn.offsetHeight - 100; // Reduced the movement
-
-      // Limit button movement to a smaller range
-      const moveX = Math.min(Math.floor(Math.random() * maxX), maxX);
-      const moveY = Math.min(Math.floor(Math.random() * maxY), maxY);
-      
-      noBtn.style.left = `${moveX}px`;
-      noBtn.style.top = `${moveY}px`;
+      // Move button to the next position in the sequence
+      posIndex = (posIndex + 1) % positions.length;
+      noBtn.style.left = positions[posIndex].x;
+      noBtn.style.top = positions[posIndex].y;
     });
 
     yesBtn.addEventListener("click", () => {
