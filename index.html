@@ -51,13 +51,15 @@
     #yesBtn {
       background-color: #ffc0cb;
       left: 25%;
-      top: 0;
+      top: 70%;
+      z-index: 2;
     }
 
     #noBtn {
       background-color: #add8e6;
       left: 55%;
-      top: 0;
+      top: 70%;
+      z-index: 2;
     }
 
     .chat-bubble {
@@ -68,7 +70,7 @@
       font-size: 4vw;
       box-shadow: 0 6px 10px rgba(0,0,0,0.2);
       position: absolute;
-      top: 20vh; /* Adjusted position */
+      top: 50vh;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
@@ -154,7 +156,7 @@
         chatBubbleAboveNo.style.display = "none";
         chatBubbleAboveYes.style.display = "none";
         noBtn.style.left = "55%";
-        noBtn.style.top = "0";
+        noBtn.style.top = "70%";
       } else {
         question.style.display = "none";
         finalMessage.textContent = "Mabait ka talaga!";
