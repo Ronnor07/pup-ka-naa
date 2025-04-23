@@ -113,12 +113,12 @@
     let currentStep = 1;
     let showWhiteScreen = false;
 
-    // Fixed sequence for the "No" button movement
+    // Predefined vertical movement positions for "No" button
     const positions = [
-      { x: "30%", y: "50%" },
-      { x: "70%", y: "50%" },
-      { x: "50%", y: "80%" },
-      { x: "40%", y: "70%" }
+      "65%", // initial position
+      "60%", // move up
+      "75%", // move down
+      "70%"  // move back to middle
     ];
     let posIndex = 0;
 
@@ -143,10 +143,9 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Move button to the next position in the sequence
+      // Move button up or down in a controlled vertical sequence
       posIndex = (posIndex + 1) % positions.length;
-      noBtn.style.left = positions[posIndex].x;
-      noBtn.style.top = positions[posIndex].y;
+      noBtn.style.top = positions[posIndex];  // Update only vertical movement
     });
 
     yesBtn.addEventListener("click", () => {
