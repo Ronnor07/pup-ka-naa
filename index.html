@@ -45,6 +45,7 @@
       position: absolute;
       white-space: nowrap;
       transition: 0.3s ease;
+      z-index: 2;
     }
 
     #yesBtn {
@@ -157,4 +158,42 @@
       showChatBubble(message, noBtn, chatBubbleAboveNo);
 
       if (chatIndex === chatMessages.length - 1) {
-        showWhiteScreen
+        showWhiteScreen = true;
+      }
+
+      chatIndex = (chatIndex + 1) % chatMessages.length;
+
+      // Prevent button from going off screen with new constraints
+      const padding = 50;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+      // Keep button within safe space
+      const moveX = Math.min(Math.floor(Math.random() * maxX), maxX);
+      const moveY = Math.min(Math.floor(Math.random() * maxY), maxY);
+      
+      noBtn.style.left = `${moveX}px`;
+      noBtn.style.top = `${moveY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      if (currentStep === 1) {
+        question.textContent = "Libre mo si Ronron ng pamasahe?";
+        currentStep = 2;
+        chatBubbleAboveNo.style.display = "none";
+        chatBubbleAboveYes.style.display = "none";
+        noBtn.style.left = "55%";
+        noBtn.style.top = "0";
+      } else {
+        question.style.display = "none";
+        finalMessage.textContent = "Mabait ka talaga!";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        chatBubbleAboveNo.style.display = "none";
+        chatBubbleAboveYes.style.display = "none";
+        catContainer.style.display = "flex";
+      }
+    });
+  </script>
+</body>
+</html>
