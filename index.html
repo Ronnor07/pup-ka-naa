@@ -13,62 +13,62 @@
       text-align: center;
       background-color: #fff8dc;
       margin: 0;
-      padding: 50px;
+      padding: 60px;
       overflow: hidden;
     }
 
     #question {
-      font-size: 36px;
-      margin-bottom: 50px;
+      font-size: 60px;
+      margin-bottom: 80px;
     }
 
     button {
-      font-size: 28px;
-      padding: 20px 40px;
-      margin: 20px;
-      border-radius: 20px;
+      font-size: 36px;
+      padding: 30px 60px;
+      border-radius: 30px;
       border: none;
       cursor: pointer;
       transition: 0.3s ease;
       position: absolute;
+      white-space: nowrap;
     }
 
     #yesBtn {
       background-color: #ffc0cb;
-      left: 30%;
-      top: 50%;
+      left: 25%;
+      top: 55%;
     }
 
     #noBtn {
       background-color: #add8e6;
       left: 60%;
-      top: 50%;
+      top: 55%;
     }
 
     .chat-bubble {
       display: none;
       background-color: #ffeb3b;
-      border-radius: 10px;
-      padding: 10px 15px;
-      font-size: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      padding: 20px 25px;
+      font-size: 28px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
       position: absolute;
-      transform: translate(-50%, -120%);
+      transform: translate(-50%, -150%);
       z-index: 1;
     }
 
     #finalMessage {
-      font-size: 36px;
-      margin-top: 40px;
+      font-size: 48px;
+      margin-top: 60px;
     }
 
     #catContainer {
       display: none;
-      margin-top: 40px;
+      margin-top: 60px;
     }
 
     #catContainer img {
-      width: 200px;
+      width: 300px;
       animation: wiggle 1s infinite;
     }
 
@@ -138,10 +138,9 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Calculate safe movement within the viewport
+      // Calculate safe random position inside window
       const maxX = window.innerWidth - noBtn.offsetWidth;
       const maxY = window.innerHeight - noBtn.offsetHeight;
-
       const moveX = Math.floor(Math.random() * maxX);
       const moveY = Math.floor(Math.random() * maxY);
 
@@ -156,7 +155,7 @@
         chatBubbleAboveNo.style.display = "none";
         chatBubbleAboveYes.style.display = "none";
         noBtn.style.left = "60%";
-        noBtn.style.top = "50%";
+        noBtn.style.top = "55%";
       } else {
         question.style.display = "none";
         finalMessage.textContent = "Mabait ka talaga!";
