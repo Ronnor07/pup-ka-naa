@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PUP ka na :></title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      text-align: center;
+      background-color: #fff8dc;
+      margin: 0;
+      padding: 50px;
+    }
+    #question {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    #yesBtn {
+      background-color: #ffc0cb;
+    }
+    #noBtn {
+      background-color: #add8e6;
+      position: relative;
+    }
+    .chat-bubble {
+      display: none;
+      background-color: #ffeb3b;
+      border-radius: 10px;
+      padding: 10px;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    #catContainer {
+      display: none;
+      margin-top: 40px;
+    }
+    #catContainer img {
+      width: 150px;
+      animation: wiggle 1s infinite;
+    }
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="question">Mag-PUP ba ako o hindi?</div>
+  <div style="position: relative; display: inline-block;">
+    <div id="chatBubbleAboveNo" class="chat-bubble"></div>
+    <button id="noBtn">No</button>
+  </div>
+  <div style="position: relative; display: inline-block;">
+    <div id="chatBubbleAboveYes" class="chat-bubble"></div>
+    <button id="yesBtn">Yes</button>
+  </div>
+
+  <div id="catContainer">
+    <img src="https://media.tenor.com/7WcPvBpkHusAAAAi/cat-cute.gif" alt="Cute cat">
+  </div>
+
+  <script>
+    const question = document.getElementById("question");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const catContainer = document.getElementById("catContainer");
+    const chatBubbleAboveYes = document.getElementById("chatBubbleAboveYes");
+    const chatBubbleAboveNo = document.getElementById("chatBubbleAboveNo");
+
+    const chatMessages = [
+      "dali", "dali na", "para namang hindi kaibigan", "lahh 😢", "iyak na ko",
+      "umiyak*", "kapag saken talaga", "NUH UH", "kwento mo sa pagong",
+      "sago't gulaman", "tama na", "sigeTT", "Okay po 😿"
+    ];
+
+    let currentStep = 1;
+    let chatIndex = 0;
+    let showWhiteScreen = false;
+
+    function showChatBubble(message, target) {
+      const bubble = target === "no" ? chatBubbleAboveNo : chatBubbleAboveYes;
+      bubble.textContent = message;
+      bubble.style.display = "block";
+    }
+
+    noBtn.addEventListener("click", () => {
+      if (showWhiteScreen) {
+        document.body.innerHTML = "";
+        document.body.style.backgroundColor = "white";
+        return;
+      }
+
+      const message = chatMessages[chatIndex];
+      showChatBubble(message, "no");
+
+      if (chatIndex === chatMessages.length - 1) {
+        showWhiteScreen = true;
+      }
+
+      chatIndex = (chatIndex + 1) % chatMessages.length;
+
+      // Move the "No" button farther each time
+      const moveX = Math.floor(Math.random() * 300) - 150;
+      const moveY = Math.floor(Math.random() * 300) - 150;
+      noBtn.style.position = 'relative';
+      noBtn.style.left = `${moveX}px`;
+      noBtn.style.top = `${moveY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      if (currentStep === 1) {
+        question.textContent = "Libre mo si Ronron ng pamasahe?";
+        currentStep = 2;
+        noBtn.style.left = "0";
+        noBtn.style.top = "0";
+        chatBubbleAboveNo.style.display = "none";
+        chatBubbleAboveYes.style.display = "none";
+      } else {
+        question.textContent = "Mabait ka talaga!";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        chatBubbleAboveNo.style.display = "none";
+        chatBubbleAboveYes.style.display = "none";
+        catContainer.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
