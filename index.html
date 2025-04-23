@@ -27,6 +27,7 @@
       font-size: 7vw;
       margin-bottom: 5vh;
       line-height: 1.2;
+      z-index: 1; /* Lower z-index to ensure chat is above */
     }
 
     .btn-container {
@@ -34,6 +35,7 @@
       width: 100%;
       max-width: 90vw;
       height: 30vh;
+      z-index: 1; /* Lower z-index to ensure chat is above */
     }
 
     button {
@@ -71,7 +73,7 @@
       left: 50%;
       transform: translateX(-50%);
       top: 10%;  /* Adjusted to position above the question */
-      z-index: 1;
+      z-index: 3; /* Set a higher z-index to ensure chat is above everything */
       white-space: nowrap;
       max-width: 80vw;
     }
@@ -107,14 +109,15 @@
     const chatMessages = [
       "dali", "dali na", "para namang hindi kaibigan", "lahh 😢", "iyak na ko",
       "umiyak*", "kapag saken talaga", "NUH UH", "kwento mo sa pagong",
-      "sago't gulaman", "tama na", "sigeTT", "Okay po 😿", // previous messages
+      "sago't gulaman", "tama na", "sigeTT", 
       "Anong tawag sa isdang namamaril? Bangus",  // new message 1
       "Sabi ko nga",                           // new message 2
       "Tama na",                               // new message 3
       "oum",                                   // new message 4
       "Awet yan",                              // new message 5
       "Di ka titigil?",                        // new message 6
-      "gg"                                     // new message 7
+      "gg",                                     // new message 7
+      "Okay po 😿"                             // Make "Okay po" the last message
     ];
 
     let chatIndex = 0;
