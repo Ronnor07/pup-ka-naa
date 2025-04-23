@@ -162,12 +162,213 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Prevent button from going off screen
+      // Prevent button from going off screen with new constraints
       const padding = 50;
       const maxX = window.innerWidth - noBtn.offsetWidth - padding;
       const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-      const moveX = Math.floor(Math.random() * maxX);
-      const moveY = Math.floor(Math.random() * maxY);
+
+      // Keep button within safe space
+      const moveX = Math.min(Math.floor(Math.random() * maxX), maxX);
+      const moveY = Math.min(Math.floor(Math.random() * maxY), maxY);
+      
+      noBtn.style.left = `${moveX}px`;
+      noBtn.style.top = `${moveY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      if (currentStep === 1) {
+        question.textContent = "Libre mo si Ronron ng pamasahe?";
+        currentStep = 2;
+        chatBubbleAboveNo.style.display = "none";
+        chatBubbleAboveYes.style.display = "none";
+        noBtn.style.left = "55%";
+        noBtn.style.top = "0";
+      } else {
+        question.style.display = "none";
+        finalMessage.textContent = "Mabait ka talaga!";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        chatBubbleAboveNo.style.display = "none";
+        chatBubbleAboveYes.style.display = "none";
+        catContainer.style.display = "flex";
+      }
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUP ka na :></title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #fff8dc;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #question {
+      font-size: 7vw;
+      margin-bottom: 5vh;
+      line-height: 1.2;
+    }
+
+    .btn-container {
+      position: relative;
+      width: 100%;
+      max-width: 90vw;
+      height: 30vh;
+    }
+
+    button {
+      font-size: 5vw;
+      padding: 4vw 6vw;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      white-space: nowrap;
+      transition: 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #ffc0cb;
+      left: 25%;
+      top: 0;
+    }
+
+    #noBtn {
+      background-color: #add8e6;
+      left: 55%;
+      top: 0;
+    }
+
+    .chat-bubble {
+      display: none;
+      background-color: #ffeb3b;
+      border-radius: 20px;
+      padding: 10px 15px;
+      font-size: 4vw;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+      position: absolute;
+      transform: translate(-50%, -140%);
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    #finalMessage {
+      font-size: 6vw;
+      margin-top: 5vh;
+    }
+
+    #catContainer {
+      display: none;
+      margin-top: 4vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #catContainer img {
+      width: 30vw;
+      animation: wiggle 1s infinite;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="question">Mag-PUP ka ba?</div>
+
+  <div class="btn-container">
+    <div id="chatBubbleAboveNo" class="chat-bubble"></div>
+    <div id="chatBubbleAboveYes" class="chat-bubble"></div>
+
+    <button id="noBtn">No</button>
+    <button id="yesBtn">Yes</button>
+  </div>
+
+  <div id="finalMessage"></div>
+
+  <div id="catContainer">
+    <img src="https://media.tenor.com/7WcPvBpkHusAAAAi/cat-cute.gif" alt="Cute cat">
+    <img src="https://media.tenor.com/BDqR1Kj9N88AAAAC/cat-dancing.gif" alt="Dancing cat">
+    <img src="https://media.tenor.com/tE5tx8zQeisAAAAC/cat-bow.gif" alt="Cat bowing">
+  </div>
+
+  <script>
+    const question = document.getElementById("question");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const chatBubbleAboveYes = document.getElementById("chatBubbleAboveYes");
+    const chatBubbleAboveNo = document.getElementById("chatBubbleAboveNo");
+    const finalMessage = document.getElementById("finalMessage");
+    const catContainer = document.getElementById("catContainer");
+
+    const chatMessages = [
+      "dali", "dali na", "para namang hindi kaibigan", "lahh 😢", "iyak na ko",
+      "umiyak*", "kapag saken talaga", "NUH UH", "kwento mo sa pagong",
+      "sago't gulaman", "tama na", "sigeTT", "Okay po 😿"
+    ];
+
+    let chatIndex = 0;
+    let currentStep = 1;
+    let showWhiteScreen = false;
+
+    function showChatBubble(message, targetBtn, bubble) {
+      bubble.textContent = message;
+      const rect = targetBtn.getBoundingClientRect();
+      bubble.style.left = `${rect.left + rect.width / 2}px`;
+      bubble.style.top = `${rect.top}px`;
+      bubble.style.display = "block";
+    }
+
+    noBtn.addEventListener("click", () => {
+      if (showWhiteScreen) {
+        document.body.innerHTML = "";
+        document.body.style.backgroundColor = "white";
+        return;
+      }
+
+      const message = chatMessages[chatIndex];
+      showChatBubble(message, noBtn, chatBubbleAboveNo);
+
+      if (chatIndex === chatMessages.length - 1) {
+        showWhiteScreen = true;
+      }
+
+      chatIndex = (chatIndex + 1) % chatMessages.length;
+
+      // Prevent button from going off screen with new constraints
+      const padding = 50;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+      // Keep button within safe space
+      const moveX = Math.min(Math.floor(Math.random() * maxX), maxX);
+      const moveY = Math.min(Math.floor(Math.random() * maxY), maxY);
+      
       noBtn.style.left = `${moveX}px`;
       noBtn.style.top = `${moveY}px`;
     });
