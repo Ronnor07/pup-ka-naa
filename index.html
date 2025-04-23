@@ -52,14 +52,12 @@
       background-color: #ffc0cb;
       left: 25%;
       top: 70%;
-      z-index: 2;
     }
 
     #noBtn {
       background-color: #add8e6;
       left: 55%;
       top: 70%;
-      z-index: 2;
     }
 
     .chat-bubble {
@@ -136,12 +134,12 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Prevent button from going off screen with new constraints
+      // Prevent button from going off screen by adjusting position within safe area
       const padding = 50;
       const maxX = window.innerWidth - noBtn.offsetWidth - padding;
       const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
-      // Keep button within safe space
+      // Limit button movement to safe area within screen dimensions
       const moveX = Math.min(Math.floor(Math.random() * maxX), maxX);
       const moveY = Math.min(Math.floor(Math.random() * maxY), maxY);
       
