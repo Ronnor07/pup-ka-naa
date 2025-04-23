@@ -58,10 +58,14 @@
       75% { transform: rotate(3deg); }
       100% { transform: rotate(0deg); }
     }
+    #finalMessage {
+      font-size: 22px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <div id="question">Mag-PUP ba ako o hindi?</div>
+  <div id="question">Mag-PUP ka ba?</div>
   <div style="position: relative; display: inline-block;">
     <div id="chatBubbleAboveNo" class="chat-bubble"></div>
     <button id="noBtn">No</button>
@@ -71,6 +75,7 @@
     <button id="yesBtn">Yes</button>
   </div>
 
+  <div id="finalMessage"></div>
   <div id="catContainer">
     <img src="https://media.tenor.com/7WcPvBpkHusAAAAi/cat-cute.gif" alt="Cute cat">
   </div>
@@ -80,6 +85,7 @@
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const catContainer = document.getElementById("catContainer");
+    const finalMessage = document.getElementById("finalMessage");
     const chatBubbleAboveYes = document.getElementById("chatBubbleAboveYes");
     const chatBubbleAboveNo = document.getElementById("chatBubbleAboveNo");
 
@@ -116,8 +122,8 @@
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
       // Move the "No" button farther each time
-      const moveX = Math.floor(Math.random() * 300) - 150;
-      const moveY = Math.floor(Math.random() * 300) - 150;
+      const moveX = Math.floor(Math.random() * 400) - 200;
+      const moveY = Math.floor(Math.random() * 400) - 200;
       noBtn.style.position = 'relative';
       noBtn.style.left = `${moveX}px`;
       noBtn.style.top = `${moveY}px`;
@@ -132,7 +138,8 @@
         chatBubbleAboveNo.style.display = "none";
         chatBubbleAboveYes.style.display = "none";
       } else {
-        question.textContent = "Mabait ka talaga!";
+        question.style.display = "none";
+        finalMessage.textContent = "Mabait ka talaga!";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
         chatBubbleAboveNo.style.display = "none";
