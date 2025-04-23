@@ -68,11 +68,12 @@
       font-size: 4vw;
       box-shadow: 0 6px 10px rgba(0,0,0,0.2);
       position: absolute;
-      top: 50vh;
+      top: 40%;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
       white-space: nowrap;
+      max-width: 80vw;
     }
 
     #finalMessage {
@@ -115,10 +116,9 @@
 
     // Predefined vertical movement positions for "No" button
     const positions = [
-      "65%", // initial position
-      "60%", // move up
-      "75%", // move down
-      "70%"  // move back to middle
+      "68%", // initial position
+      "65%", // move up slightly
+      "72%", // move down slightly
     ];
     let posIndex = 0;
 
@@ -143,7 +143,7 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Move button up or down in a controlled vertical sequence
+      // Move button within a smaller range
       posIndex = (posIndex + 1) % positions.length;
       noBtn.style.top = positions[posIndex];  // Update only vertical movement
     });
