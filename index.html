@@ -78,27 +78,6 @@
       margin-top: 5vh;
     }
 
-    #catContainer {
-      display: none;
-      margin-top: 4vh;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    #catContainer img {
-      width: 30vw;
-      animation: wiggle 1s infinite;
-    }
-
-    @keyframes wiggle {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(3deg); }
-      50% { transform: rotate(-3deg); }
-      75% { transform: rotate(3deg); }
-      100% { transform: rotate(0deg); }
-    }
   </style>
 </head>
 <body>
@@ -114,12 +93,6 @@
 
   <div id="finalMessage"></div>
 
-  <div id="catContainer">
-    <img src="https://media.tenor.com/7WcPvBpkHusAAAAi/cat-cute.gif" alt="Cute cat">
-    <img src="https://media.tenor.com/BDqR1Kj9N88AAAAC/cat-dancing.gif" alt="Dancing cat">
-    <img src="https://media.tenor.com/tE5tx8zQeisAAAAC/cat-bow.gif" alt="Cat bowing">
-  </div>
-
   <script>
     const question = document.getElementById("question");
     const yesBtn = document.getElementById("yesBtn");
@@ -127,7 +100,6 @@
     const chatBubbleAboveYes = document.getElementById("chatBubbleAboveYes");
     const chatBubbleAboveNo = document.getElementById("chatBubbleAboveNo");
     const finalMessage = document.getElementById("finalMessage");
-    const catContainer = document.getElementById("catContainer");
 
     const chatMessages = [
       "dali", "dali na", "para namang hindi kaibigan", "lahh 😢", "iyak na ko",
@@ -191,7 +163,6 @@
         noBtn.style.display = "none";
         chatBubbleAboveNo.style.display = "none";
         chatBubbleAboveYes.style.display = "none";
-        catContainer.style.display = "flex";
       }
     });
   </script>
