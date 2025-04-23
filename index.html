@@ -114,11 +114,13 @@
     let currentStep = 1;
     let showWhiteScreen = false;
 
-    // Predefined vertical movement positions for "No" button
+    // Predefined vertical movement sequence for "No" button
     const positions = [
       "68%", // initial position
       "65%", // move up slightly
       "72%", // move down slightly
+      "75%", // move down further
+      "66%", // move up again
     ];
     let posIndex = 0;
 
@@ -143,7 +145,7 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Move button within a smaller range
+      // Move button in sequence
       posIndex = (posIndex + 1) % positions.length;
       noBtn.style.top = positions[posIndex];  // Update only vertical movement
     });
