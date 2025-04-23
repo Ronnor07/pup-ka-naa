@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUP ka na :></title>
   <style>
     * {
@@ -9,52 +10,52 @@
     }
 
     body {
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      background-color: #fff8dc;
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #fff8dc;
       height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      text-align: center;
     }
 
     #question {
-      font-size: 60px;
-      margin-bottom: 60px;
-      text-align: center;
+      font-size: 7vw;
+      margin-bottom: 5vh;
+      line-height: 1.2;
     }
 
     .btn-container {
       position: relative;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 80px;
+      max-width: 90vw;
+      height: 30vh;
     }
 
     button {
-      font-size: 36px;
-      padding: 30px 60px;
-      border-radius: 30px;
+      font-size: 5vw;
+      padding: 4vw 6vw;
+      border-radius: 20px;
       border: none;
       cursor: pointer;
-      transition: 0.3s ease;
       position: absolute;
       white-space: nowrap;
+      transition: 0.3s ease;
     }
 
     #yesBtn {
       background-color: #ffc0cb;
-      left: 30%;
+      left: 25%;
       top: 0;
     }
 
     #noBtn {
       background-color: #add8e6;
-      left: 60%;
+      left: 55%;
       top: 0;
     }
 
@@ -62,26 +63,27 @@
       display: none;
       background-color: #ffeb3b;
       border-radius: 20px;
-      padding: 20px 25px;
-      font-size: 28px;
+      padding: 10px 15px;
+      font-size: 4vw;
       box-shadow: 0 6px 10px rgba(0,0,0,0.2);
       position: absolute;
-      transform: translate(-50%, -150%);
+      transform: translate(-50%, -140%);
       z-index: 1;
+      white-space: nowrap;
     }
 
     #finalMessage {
-      font-size: 48px;
-      margin-top: 60px;
+      font-size: 6vw;
+      margin-top: 5vh;
     }
 
     #catContainer {
       display: none;
-      margin-top: 60px;
+      margin-top: 4vh;
     }
 
     #catContainer img {
-      width: 300px;
+      width: 30vw;
       animation: wiggle 1s infinite;
     }
 
@@ -114,10 +116,10 @@
     const question = document.getElementById("question");
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const catContainer = document.getElementById("catContainer");
-    const finalMessage = document.getElementById("finalMessage");
     const chatBubbleAboveYes = document.getElementById("chatBubbleAboveYes");
     const chatBubbleAboveNo = document.getElementById("chatBubbleAboveNo");
+    const finalMessage = document.getElementById("finalMessage");
+    const catContainer = document.getElementById("catContainer");
 
     const chatMessages = [
       "dali", "dali na", "para namang hindi kaibigan", "lahh 😢", "iyak na ko",
@@ -125,8 +127,8 @@
       "sago't gulaman", "tama na", "sigeTT", "Okay po 😿"
     ];
 
-    let currentStep = 1;
     let chatIndex = 0;
+    let currentStep = 1;
     let showWhiteScreen = false;
 
     function showChatBubble(message, targetBtn, bubble) {
@@ -153,12 +155,11 @@
 
       chatIndex = (chatIndex + 1) % chatMessages.length;
 
-      // Calculate safe random position inside window
+      // Move button within safe mobile space
       const maxX = window.innerWidth - noBtn.offsetWidth;
       const maxY = window.innerHeight - noBtn.offsetHeight - 100;
       const moveX = Math.floor(Math.random() * maxX);
       const moveY = Math.floor(Math.random() * maxY);
-
       noBtn.style.left = `${moveX}px`;
       noBtn.style.top = `${moveY}px`;
     });
@@ -169,7 +170,7 @@
         currentStep = 2;
         chatBubbleAboveNo.style.display = "none";
         chatBubbleAboveYes.style.display = "none";
-        noBtn.style.left = "60%";
+        noBtn.style.left = "55%";
         noBtn.style.top = "0";
       } else {
         question.style.display = "none";
